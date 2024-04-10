@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import TaskItem from './TaskItem';
 import TaskForm from './TaskForm';
+import { useLocalStorage } from '../../hooks/custom-hooks';
 
 const TasksApp = () => {
-  const [tasks, setTasks] = useState([
+  // const [tasks, setTasks] = useState([
+  //   { id: 1, text: 'Learn react basics', completed: true },
+  //   { id: 2, text: 'Learn react state', completed: false },
+  //   { id: 3, text: 'Learn react routing', completed: false },
+  //   { id: 4, text: 'Learn react props', completed: true },
+  // ]);
+
+  const [tasks, setTasks] = useLocalStorage('tasks', [
     { id: 1, text: 'Learn react basics', completed: true },
     { id: 2, text: 'Learn react state', completed: false },
     { id: 3, text: 'Learn react routing', completed: false },

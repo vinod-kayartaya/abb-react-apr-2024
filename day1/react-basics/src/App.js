@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import NumberOps from './components/NumberOps';
+import ProductList from './components/ProductList';
 import TasksApp from './components/tasks-manager/TasksApp';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <div className='container'>
         {/* <NumberOps /> */}
         <TasksApp />
+        {/* <ProductList /> */}
       </div>
     </>
   );
