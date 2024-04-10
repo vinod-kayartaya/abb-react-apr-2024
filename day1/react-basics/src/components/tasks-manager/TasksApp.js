@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TaskItem from './TaskItem';
+import TaskForm from './TaskForm';
 
 const TasksApp = () => {
   const [tasks, setTasks] = useState([
@@ -15,6 +16,11 @@ const TasksApp = () => {
     setTasks(remainingTasks); // this triggers the rerender of the component
   };
 
+  const addTask = (text) => {
+    const id = tasks.length === 0 ? 1 : 1 + Math.max(...tasks.map((t) => t.id));
+    setTasks([...tasks, { id, text, completed: false }]);
+  };
+
   const tasksJsx = tasks.map((t) => (
     <TaskItem key={t.id} task={t} deleteTask={deleteTask} />
   ));
@@ -23,6 +29,8 @@ const TasksApp = () => {
     <>
       <h3>Task Manager App</h3>
       <hr />
+
+      <TaskForm addTask={addTask} />
 
       <p className='lead'>Here are your tasks:</p>
       <div className='list-group'>{tasksJsx}</div>
