@@ -6,6 +6,10 @@ const Header = () => {
 
   const dispatch = useDispatch(); // this hook returns a function capable of dispatching an action
   window.dispatch = dispatch;
+  // in the browser console, try these commands:
+  // dispatch({type: 'ADD_CUSTOMER', payload: {name: 'ravi'}})
+  // dispatch({type: 'DELETE_CUSTOMER', payload: 1})
+  // and check the customers count in the header
 
   return (
     <>

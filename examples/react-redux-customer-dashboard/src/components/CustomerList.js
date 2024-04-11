@@ -1,19 +1,29 @@
-import React from "react";
-import CustomerCard from "./CustomerCard";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import CustomerCard from './CustomerCard';
 
 const CustomerList = () => {
-  const { customers } = useSelector((store) => store.customersReducer);
+  const { customers, selectedCustomer } = useSelector(
+    (store) => store.customersReducer
+  );
+
   return (
-    <ul className="list-group">
-      {customers.map((customer, index) => {
-        return (
-          <li key={"cutsomer-" + index} className="list-group-item">
-            <CustomerCard customer={customer} />
+    <>
+      <ul className='list-group'>
+        {customers.map((c) => (
+          <li
+            className={
+              selectedCustomer != null && c.id === selectedCustomer.id
+                ? 'list-group-item active'
+                : 'list-group-item'
+            }
+            key={c.id}
+          >
+            <CustomerCard customer={c} />
           </li>
-        );
-      })}
-    </ul>
+        ))}
+      </ul>
+    </>
   );
 };
 

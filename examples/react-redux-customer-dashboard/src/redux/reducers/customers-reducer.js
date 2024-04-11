@@ -1,4 +1,9 @@
-import { ADD_CUSTOMER, DELETE_CUSTOMER } from "../types/action-types";
+import {
+  ADD_CUSTOMER,
+  DELETE_CUSTOMER,
+  SET_SELECTED_CUSTOMER,
+  UNSET_SELECTED_CUSTOMER,
+} from '../types/action-types';
 
 const initialState = {
   customers: [
@@ -19,6 +24,7 @@ const initialState = {
       picture: "https://cms.patrika.com/wp-content/uploads/2019/11/19/14_1.jpg",
     },
   ],
+  selectedCustomer: null,
 };
 
 export default function customersReducer(state = initialState, action) {
@@ -46,5 +52,14 @@ export default function customersReducer(state = initialState, action) {
     return { ...state, customers: remainingCustomers };
   }
 
+  if (action.type === SET_SELECTED_CUSTOMER) {
+    // action.payload is assumed to be the selected customer
+    return { ...state, selectedCustomer: action.payload };
+  }
+
+  if (action.type === UNSET_SELECTED_CUSTOMER) {
+    // there is no action.payload
+    return { ...state, selectedCustomer: null };
+  }
   return state;
 }

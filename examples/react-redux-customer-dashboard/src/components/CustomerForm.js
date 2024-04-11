@@ -1,156 +1,183 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addCustomer } from "../redux/actions/customers-action-creators";
-const newCustomer = {
-  name: "",
-  gender: "male",
-  picture: "",
-  email: "",
-  phone: "",
-  city: "Bangalore",
-};
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addCustomer } from '../redux/actions/customers-action-creators';
+
 const CustomerForm = () => {
   const dispatch = useDispatch();
-  const [customer, setCustomer] = useState(newCustomer);
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    phone: "",
+
+  const [customer, setCustomer] = useState({
+    name: '',
+    city: 'Bangalore',
+    gender: 'Male',
+    picture:
+      'https://wallpapers-clan.com/wp-content/uploads/2022/08/default-pfp-19.jpg',
+    email: '',
+    phone: '',
   });
-  const submitHandler = (e) => {
-    e.preventDefault();
 
-    let _errors = {},
-      len = customer?.name?.trim()?.length;
-    if (len == 0) _errors.name = "Name is required";
-    else if (len > 1 && len < 3) _errors.name = "at least 3 letters required";
-
-    len = customer?.email?.trim()?.length;
-    if (customer?.email?.trim()?.length == 0)
-      _errors.email = "Email is required";
-
-    len = customer?.phone?.trim()?.length;
-    if (customer?.phone?.trim()?.length == 0)
-      _errors.phone = "Phone number is required";
-
-    setErrors(_errors);
-    if (Object.keys(_errors)?.length) return;
-
-    dispatch(addCustomer(customer));
-
-    setCustomer(newCustomer);
-  };
+  // state for errors
+  const [errors, setErrors] = useState({});
 
   const changeHandler = ({ target: { name, value } }) => {
     setCustomer({ ...customer, [name]: value });
   };
+
+  const validate = () => {
+    let _errors = {};
+    let len = customer.name.trim().length;
+    if (len === 0) {
+      _errors.name = 'name is required';
+    } else if (len > 0 && len < 3) {
+      _errors.name = 'at least 3 letters required';
+    }
+
+    len = customer.email.trim().length;
+    if (len === 0) {
+      _errors.email = 'email is required';
+    }
+
+    len = customer.phone.trim().length;
+    if (len === 0) {
+      _errors.phone = 'phone is required';
+    }
+
+    return _errors;
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    // validate the customer and if there are errors, then update the errors state variable
+    let _errors = validate();
+
+    // check if there are any errors
+    if (Object.keys(_errors).length > 0) {
+      // there is at least one error
+      setErrors(_errors);
+      return;
+    }
+
+    dispatch(addCustomer(customer));
+    // clear the text fields (by resetting the state `customer`)
+    setCustomer({
+      name: '',
+      city: 'Bangalore',
+      gender: 'Male',
+      picture:
+        'https://wallpapers-clan.com/wp-content/uploads/2022/08/default-pfp-19.jpg',
+      email: '',
+      phone: '',
+    });
+  };
+
   return (
     <>
-      <h3>Customer Form</h3>
-      {JSON.stringify(errors)}
+      <h3>Customer form</h3>
+
       <form onSubmit={submitHandler}>
-        <div className="mb-3">
-          <label htmlFor="nameInput" className="form-label">
+        <div className='mb-3'>
+          <label htmlFor='nameInput' className='form-label'>
             Name
           </label>
           <input
-            type="text"
-            className="form-control"
-            id="nameInput"
-            name="name"
-            placeholder="Enter name"
-            value={customer?.name}
+            type='text'
+            className='form-control'
+            id='nameInput'
+            name='name'
+            value={customer.name}
             onChange={changeHandler}
-            required={true}
           />
-          {errors.name && <small className="text-danger">{errors.name}</small>}
+          {errors.name && <small className='text-danger'>{errors.name}</small>}
         </div>
-        <div className="mb-3">
-          <label htmlFor="gender" className="form-label me-3">
-            Gender
-          </label>
+        <div className='mb-3'>
+          <label className='form-label me-3'>Gender</label>
           <input
-            type="radio"
-            name="gender"
-            id="maleRadio"
-            className="me-3"
+            type='radio'
+            className='check-input me-3'
+            id='genderMaleInput'
+            name='gender'
+            value='Male'
             onChange={changeHandler}
-            value="male"
-            checked={customer?.gender === "male"}
+            checked={customer.gender === 'Male'}
           />
-          <label htmlFor="maleRadio" className="form-label me-3">
+          <label htmlFor='genderMaleInput' className='check-label me-3'>
             Male
           </label>
           <input
-            type="radio"
-            name="gender"
-            id="femaleRadio"
-            className="me-3"
+            type='radio'
+            className='check-input me-3'
+            id='genderFemaleInput'
+            name='gender'
+            value='Female'
             onChange={changeHandler}
-            value="female"
-            checked={customer?.gender === "female"}
+            checked={customer.gender === 'Female'}
           />
-          <label htmlFor="femaleRadio" className="form-label me-3">
+          <label htmlFor='genderFemaleInput' className='check-label me-3'>
             Female
           </label>
         </div>
-        <div className="mb-3">
-          <label htmlFor="emailInput" className="form-label">
-            Email
+        <div className='mb-3'>
+          <label htmlFor='emailInput' className='form-label'>
+            Email address
           </label>
           <input
-            type="email"
-            className="form-control"
-            id="emailInput"
-            placeholder="Enter Email"
-            name="email"
-            value={customer?.email}
+            type='email'
+            className='form-control'
+            id='emailInput'
+            name='email'
+            value={customer.email}
             onChange={changeHandler}
-            required={true}
           />
           {errors.email && (
-            <small className="text-danger">{errors.email}</small>
+            <small className='text-danger'>{errors.email}</small>
           )}
         </div>
-        <div className="mb-3">
-          <label htmlFor="phone" className="form-label">
-            Phone
+        <div className='mb-3'>
+          <label htmlFor='phoneInput' className='form-label'>
+            Phone number
           </label>
           <input
-            type="number"
-            className="form-control"
-            id="phone"
-            name="phone"
-            placeholder="Enter Phone number"
-            value={customer?.phone}
+            type='tel'
+            className='form-control'
+            id='phoneInput'
+            name='phone'
+            value={customer.phone}
             onChange={changeHandler}
-            required={true}
-            max={10}
           />
           {errors.phone && (
-            <small className="text-danger">{errors.phone}</small>
+            <small className='text-danger'>{errors.phone}</small>
           )}
         </div>
-        <div className="mb-3">
-          <label htmlFor="cityInput" className="form-label">
+        <div className='mb-3'>
+          <label htmlFor='cityInput' className='form-label'>
             City
           </label>
           <input
-            type="text"
-            className="form-control"
-            id="cityInput"
-            name="city"
-            placeholder="Enter City"
-            value={customer?.city}
+            type='text'
+            className='form-control'
+            id='cityInput'
+            name='city'
+            value={customer.city}
+            onChange={changeHandler}
+          />
+        </div>
+        <div className='mb-3'>
+          <label htmlFor='pictureInput' className='form-label'>
+            Picture
+          </label>
+          <input
+            type='text'
+            className='form-control'
+            id='pictureInput'
+            name='picture'
+            value={customer.picture}
             onChange={changeHandler}
           />
         </div>
 
-        <div className="mb-3">
-          <button className="btn btn-primary" onClick={submitHandler}>
-            Submit
-          </button>
-        </div>
+        <button type='submit' className='btn btn-primary'>
+          Submit
+        </button>
       </form>
     </>
   );
