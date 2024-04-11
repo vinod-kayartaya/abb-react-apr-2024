@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-const baseUrl = 'http://54.253.204.230:8080';
+const baseUrl = "http://54.253.204.230:8080";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -10,7 +10,7 @@ const ProductList = () => {
   // useEffect(callback, [dep1, dep2]); // the callback is executed everytime dep1 or dep2 changes
 
   useEffect(() => {
-    fetch(baseUrl + '/products')
+    fetch(baseUrl + "/products")
       .then((resp) => resp.json())
       .then(setProducts) // .then(data=>setProducts(data))
       .catch(console.log); // .catch((err) => console.log(err))
@@ -20,7 +20,7 @@ const ProductList = () => {
     <>
       <h3>List of products</h3>
 
-      <table className='table table-bordered table-striped'>
+      <table className="table table-bordered table-striped">
         <thead>
           <tr>
             <th>Thumbnail</th>
@@ -35,9 +35,10 @@ const ProductList = () => {
             <tr key={p.id}>
               <td>
                 <img
-                  style={{ height: '75px' }}
+                  style={{ height: "75px" }}
                   src={baseUrl + p.picture}
                   alt={p.name}
+                  className="img-thumbnail"
                 />
               </td>
               <td>{p.description}</td>
