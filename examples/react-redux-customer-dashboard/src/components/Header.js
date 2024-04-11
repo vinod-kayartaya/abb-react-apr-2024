@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Header() {
   useSelector(function () {
@@ -8,6 +8,11 @@ function Header() {
       arguments
     );
   });
+
+  const dispatch = useDispatch(); // this hook returns a function capable of dispatching events
+  window.dispatch = dispatch;
+
+  const { customers } = useSelector((store) => store.customersReducer);
   return (
     <>
       <div className="alert alert-primary">
@@ -16,7 +21,7 @@ function Header() {
         </div>
       </div>
       <div className="container">
-        <p className="lead">Customer count 100</p>
+        <p className="lead">Customer count {customers?.length || 0} </p>
       </div>
     </>
   );
