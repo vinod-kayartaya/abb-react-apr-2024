@@ -21,7 +21,7 @@ function App() {
         </div>
       </div>
     </Provider>
-  );
+  );  
 }
 
 export default App;
