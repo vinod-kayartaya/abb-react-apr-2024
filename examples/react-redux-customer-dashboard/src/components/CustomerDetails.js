@@ -7,6 +7,7 @@ import {
 
 const CustomerDetails = () => {
   const { selectedCustomer } = useSelector((store) => store.customersReducer);
+
   const dispatch = useDispatch();
 
   const deleteButtonHandler = () => {
