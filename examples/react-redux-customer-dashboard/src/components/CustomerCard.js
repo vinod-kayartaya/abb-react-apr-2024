@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import {
   deleteCustomer,
   setSelectedCustomer,
+  unsetSelectedCustomer,
 } from '../redux/actions/customers-action-creators';
 
 const CustomerCard = ({ customer }) => {
@@ -11,6 +12,7 @@ const CustomerCard = ({ customer }) => {
     if (!window.confirm('Are you sure to delete this?')) return;
 
     dispatch(deleteCustomer(customer.id));
+    dispatch(unsetSelectedCustomer(customer));
   };
 
   return (

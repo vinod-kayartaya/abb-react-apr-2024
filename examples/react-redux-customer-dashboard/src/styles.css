@@ -6,3 +6,7 @@
 .app-customer-card:hover .app-customer-card-buttons {
     visibility: visible;
 }
+
+.active .app-customer-card-buttons .btn-link {
+    color: white
+}
