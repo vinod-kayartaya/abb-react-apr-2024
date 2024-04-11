@@ -1,0 +1,6 @@
+.app-customer-card-buttons {
+    visibility: hidden;
+}
+.app-customer-card:hover .app-customer-card-buttons {
+    visibility: visible;
+}
