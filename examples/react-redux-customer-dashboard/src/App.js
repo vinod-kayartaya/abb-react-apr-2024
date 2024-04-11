@@ -11,17 +11,23 @@ function App() {
       <Header />
       <div className="row">
         <div className="col-4">
-          <CustomerForm />
+          <div className="container">
+            <CustomerForm />
+          </div>
         </div>
         <div className="col-4">
-          <CustomerList />
+          <div className="container">
+            <CustomerList />
+          </div>
         </div>
         <div className="col-4">
-          <CustomerDetails />
+          <div className="container">
+            <CustomerDetails />
+          </div>
         </div>
       </div>
     </Provider>
-  );  
+  );
 }
 
 export default App;
