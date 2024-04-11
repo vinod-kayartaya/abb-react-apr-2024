@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react'
 
-function CustomerDetails() {
-  return <div>CustomerDetails</div>;
+const CustomerDetails = () => {
+  return (
+    <div>CustomerDetails</div>
+  )
 }
 
-export default CustomerDetails;
+export default CustomerDetails

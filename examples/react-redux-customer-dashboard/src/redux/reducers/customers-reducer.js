@@ -37,7 +37,7 @@ export default function customersReducer(state = initialState, action) {
     return { ...state, customers };
   }
 
-  if (action.type == DELETE_CUSTOMER) {
+  if (action.type === DELETE_CUSTOMER) {
     // action.payload is assumed to be the id of the customer to be deleted
     const remainingCustomers = state.customers.filter(
       (c) => c.id !== action.payload

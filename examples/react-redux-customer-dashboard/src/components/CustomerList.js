@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react'
 
-function CustomerList() {
-  return <div>CustomerList</div>;
+const CustomerList = () => {
+  return (
+    <div>CustomerList</div>
+  )
 }
 
-export default CustomerList;
+export default CustomerList

@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react'
 
-function CustomerForm() {
-  return <div>CustomerForm</div>;
+const CustomerForm = () => {
+  return (
+    <div>CustomerForm</div>
+  )
 }
 
-export default CustomerForm;
+export default CustomerForm
