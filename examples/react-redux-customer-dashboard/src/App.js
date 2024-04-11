@@ -9,20 +9,22 @@ function App() {
   return (
     <Provider store={store}>
       <Header />
-      <div className="row">
-        <div className="col-4">
-          <div className="container">
-            <CustomerForm />
+      <div className="container">
+        <div className="row">
+          <div className="col-4">
+            <div className="container">
+              <CustomerForm />
+            </div>
           </div>
-        </div>
-        <div className="col-4">
-          <div className="container">
-            <CustomerList />
+          <div className="col-4">
+            <div className="container">
+              <CustomerList />
+            </div>
           </div>
-        </div>
-        <div className="col-4">
-          <div className="container">
-            <CustomerDetails />
+          <div className="col-4">
+            <div className="container">
+              <CustomerDetails />
+            </div>
           </div>
         </div>
       </div>
