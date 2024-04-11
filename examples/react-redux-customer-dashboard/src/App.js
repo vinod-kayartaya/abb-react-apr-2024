@@ -11,18 +11,19 @@ function App() {
     <Provider store={store}>
       <Header />
 
-      <div className='row'>
-        <div className='col-4'>
-          <CustomerForm />
-        </div>
-        <div className='col-4'>
-          <CustomerList />
-        </div>
-        <div className='col-4'>
-          <CustomerDetails />
+      <div className='container'>
+        <div className='row'>
+          <div className='col-4'>
+            <CustomerForm />
+          </div>
+          <div className='col-4'>
+            <CustomerList />
+          </div>
+          <div className='col-4'>
+            <CustomerDetails />
+          </div>
         </div>
       </div>
-      
       <Footer />
     </Provider>
   );
