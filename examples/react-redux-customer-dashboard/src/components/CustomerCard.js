@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import {
   deleteCustomer,
+  setEditingCustomer,
   setSelectedCustomer,
   unsetSelectedCustomer,
 } from "../redux/actions/customers-action-creators";
@@ -33,7 +34,10 @@ const CustomerCard = ({ customer }) => {
               onClick={deleteButtonHandler}
               className="btn btn-link bi bi-trash"
             ></button>
-            <button className="btn btn-link bi bi-pen"></button>
+            <button
+              onClick={() => dispatch(setEditingCustomer(customer))}
+              className="btn btn-link bi bi-pen"
+            ></button>
           </div>
         </div>
       </div>

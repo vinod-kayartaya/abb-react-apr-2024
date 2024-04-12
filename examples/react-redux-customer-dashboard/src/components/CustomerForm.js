@@ -1,22 +1,36 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addCustomer } from '../redux/actions/customers-action-creators';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addCustomer,
+  unsetEditingCustomer,
+  updateCustomer,
+} from '../redux/actions/customers-action-creators';
+
+const defaultCustomerData = {
+  name: '',
+  city: 'Bangalore',
+  gender: 'Male',
+  picture:
+    'https://wallpapers-clan.com/wp-content/uploads/2022/08/default-pfp-19.jpg',
+  email: '',
+  phone: '',
+};
 
 const CustomerForm = () => {
   const dispatch = useDispatch();
+  const { editingCustomer } = useSelector((store) => store.customersReducer);
 
-  const [customer, setCustomer] = useState({
-    name: '',
-    city: 'Bangalore',
-    gender: 'Male',
-    picture:
-      'https://wallpapers-clan.com/wp-content/uploads/2022/08/default-pfp-19.jpg',
-    email: '',
-    phone: '',
-  });
+  const [customer, setCustomer] = useState({ ...defaultCustomerData });
 
   // state for errors
   const [errors, setErrors] = useState({});
+
+  // an effect to be executed whenever `editingCustomer` changes
+  useEffect(() => {
+    if (editingCustomer !== null) {
+      setCustomer({ ...editingCustomer });
+    }
+  }, [editingCustomer]);
 
   const changeHandler = ({ target: { name, value } }) => {
     setCustomer({ ...customer, [name]: value });
@@ -57,17 +71,14 @@ const CustomerForm = () => {
       return;
     }
 
-    dispatch(addCustomer(customer));
+    if (customer.id) {
+      dispatch(updateCustomer(customer));
+    } else {
+      dispatch(addCustomer(customer));
+    }
+
     // clear the text fields (by resetting the state `customer`)
-    setCustomer({
-      name: '',
-      city: 'Bangalore',
-      gender: 'Male',
-      picture:
-        'https://wallpapers-clan.com/wp-content/uploads/2022/08/default-pfp-19.jpg',
-      email: '',
-      phone: '',
-    });
+    setCustomer({ ...defaultCustomerData });
   };
 
   return (
@@ -178,6 +189,18 @@ const CustomerForm = () => {
         <button type='submit' className='btn btn-primary'>
           Submit
         </button>
+
+        {editingCustomer !== null && (
+          <button
+            onClick={() => {
+              dispatch(unsetEditingCustomer());
+              setCustomer({ ...defaultCustomerData });
+            }}
+            className='btn btn-link'
+          >
+            Cancel editing
+          </button>
+        )}
       </form>
     </>
   );

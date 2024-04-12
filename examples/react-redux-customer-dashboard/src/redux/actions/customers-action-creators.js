@@ -4,9 +4,11 @@
 import {
   ADD_CUSTOMER,
   DELETE_CUSTOMER,
-  FETCH_CUSTOMER,
+  SET_EDITING_CUSTOMER,
   SET_SELECTED_CUSTOMER,
+  UNSET_EDITING_CUSTOMER,
   UNSET_SELECTED_CUSTOMER,
+  UPDATE_CUSTOMER,
 } from '../types/action-types';
 
 // for example, when we want to add a new customer, we supply a customer object
@@ -26,11 +28,6 @@ export const deleteCustomer = (id) => ({
   payload: id,
 });
 
-export const getCustomer = (id) => ({
-  type: FETCH_CUSTOMER,
-  payload: id,
-});
-
 export const setSelectedCustomer = (customer) => ({
   type: SET_SELECTED_CUSTOMER,
   payload: customer,
@@ -38,4 +35,18 @@ export const setSelectedCustomer = (customer) => ({
 
 export const unsetSelectedCustomer = () => ({
   type: UNSET_SELECTED_CUSTOMER,
+});
+
+export const setEditingCustomer = (customer) => ({
+  type: SET_EDITING_CUSTOMER,
+  payload: customer,
+});
+
+export const unsetEditingCustomer = () => ({
+  type: UNSET_EDITING_CUSTOMER,
+});
+
+export const updateCustomer = (customer) => ({
+  type: UPDATE_CUSTOMER,
+  payload: customer,
 });
