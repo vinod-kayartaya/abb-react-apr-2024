@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useFetch } from "../hooks/custom-hooks";
+import React, { useState } from 'react';
+import { useFetch } from '../hooks/custom-hooks';
 
 const MovieList = () => {
-  const [searchText, setSearchText] = useState("spider");
+  const [searchText, setSearchText] = useState('spider');
   const [url, setUrl] = useState(
-    "http://omdbapi.com/?apikey=aa9e49f&s=" + searchText
+    'http://omdbapi.com/?apikey=aa9e49f&s=' + searchText
   );
   const { data, isLoading, error } = useFetch(url);
 
@@ -12,23 +12,23 @@ const MovieList = () => {
     e.preventDefault();
     if (!searchText.trim()) return;
 
-    setUrl("http://omdbapi.com/?apikey=aa9e49f&s=" + searchText);
+    setUrl('http://omdbapi.com/?apikey=aa9e49f&s=' + searchText);
   };
   return (
     <>
       <h3>Movie list</h3>
       <form onSubmit={submitHandler}>
         <input
-          type="search"
+          type='search'
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          className="form-control"
+          className='form-control'
         />
       </form>
 
       {isLoading && <h5>loading... pls wait.</h5>}
       {error && (
-        <p className="lead text-danger">
+        <p className='lead text-danger'>
           there was an error while fetching movie data. pls check logs.
           <pre>{JSON.stringify(error, null, 4)}</pre>
         </p>
@@ -36,9 +36,9 @@ const MovieList = () => {
 
       {data && (
         <>
-          <p className="lead">here are the movies titles containing `iron`</p>
+          <p className='lead'>here are the movies titles containing `iron`</p>
           {/* table.table.table-striped.table-bordered>(thead>tr>th*4)+(tbody>tr>td*4) */}
-          <table className="table table-striped table-bordered">
+          <table className='table table-striped table-bordered'>
             <thead>
               <tr>
                 <th>Poster</th>
@@ -52,10 +52,9 @@ const MovieList = () => {
                 <tr key={m.imdbID}>
                   <td>
                     <img
-                      style={{ height: "200px" }}
+                      style={{ height: '200px' }}
                       src={m.Poster}
                       alt={m.Title}
-                      className="img-thumbnail"
                     />
                   </td>
                   <td>{m.Title}</td>

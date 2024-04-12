@@ -1,10 +1,12 @@
+// these methods return plain objects, unlike the products-action-creators which returned Promise
+
 import {
   ADD_TO_CART,
   DECREMENT_QUANTITY,
   EMPTY_CART,
   INCREMENT_QUANTITY,
   REMOVE_FROM_CART,
-} from "../types/cart-reducer-types";
+} from '../types/cart-reducer-types';
 
 export const addToCart = (product) => ({
   type: ADD_TO_CART,
