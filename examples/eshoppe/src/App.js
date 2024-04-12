@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import ProductList from './components/ProductList';
+import ViewCart from './components/ViewCart';
 
 function App() {
   return (
@@ -15,10 +16,7 @@ function App() {
               <Route path='' element={<ProductList />} />
               <Route path='products' element={<ProductList />} />
 
-              <Route
-                path='view-cart'
-                element={<h3>You may see your cart content here</h3>}
-              />
+              <Route path='view-cart' element={<ViewCart />} />
 
               <Route path='login' element={<h3>Login form here</h3>} />
 

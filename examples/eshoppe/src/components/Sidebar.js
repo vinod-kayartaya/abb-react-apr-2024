@@ -19,12 +19,9 @@ const Sidebar = () => {
   return (
     <>
       <ul className='list-group mb-5'>
-        <button
-          onClick={() => fetchProducts().then(dispatch)}
-          className='list-group-item text-start'
-        >
+        <Link to='/products' className='list-group-item text-start'>
           all products
-        </button>
+        </Link>
       </ul>
 
       <h3 className='lead'>brands</h3>
