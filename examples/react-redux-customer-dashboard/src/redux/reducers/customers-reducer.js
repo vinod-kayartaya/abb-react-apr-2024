@@ -1,8 +1,11 @@
 import {
   ADD_CUSTOMER,
   DELETE_CUSTOMER,
+  SET_EDITING_CUSTOMER,
   SET_SELECTED_CUSTOMER,
+  UNSET_EDITING_CUSTOMER,
   UNSET_SELECTED_CUSTOMER,
+  UPDATE_CUSTOMER,
 } from '../types/action-types';
 
 const initialState = {
@@ -25,6 +28,7 @@ const initialState = {
     },
   ],
   selectedCustomer: null,
+  editingCustomer: null,
 };
 
 export default function customersReducer(state = initialState, action) {
@@ -61,5 +65,34 @@ export default function customersReducer(state = initialState, action) {
     // there is no action.payload
     return { ...state, selectedCustomer: null };
   }
+
+  if (action.type === SET_EDITING_CUSTOMER) {
+    // action.payload is assumed to be the selected customer
+    return { ...state, editingCustomer: action.payload };
+  }
+
+  if (action.type == UNSET_EDITING_CUSTOMER) {
+    return { ...state, editingCustomer: null };
+  }
+
+  if (action.type === UPDATE_CUSTOMER) {
+    // action.payload is assumed to be the modified customer data to be updated in the store
+    const _customers = [...state.customers];
+    const index = _customers.findIndex((c) => c.id === action.payload.id);
+    if (index === -1) return state;
+    _customers[index] = { ...action.payload };
+    if (state.selectedCustomer?.id === action.payload.id) {
+      return {
+        ...state,
+        customers: _customers,
+        editingCustomer: null,
+        selectedCustomer: action.payload,
+      };
+    } else {
+      return { ...state, customers: _customers, editingCustomer: null };
+    }
+  }
+
+  // this return value is used by redux only for the first time.
   return state;
 }

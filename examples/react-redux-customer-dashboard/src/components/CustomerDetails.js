@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteCustomer,
+  setEditingCustomer,
   unsetSelectedCustomer,
 } from '../redux/actions/customers-action-creators';
 
@@ -62,6 +63,12 @@ const CustomerDetails = () => {
             className='btn btn-link'
           >
             Cancel
+          </button>
+          <button
+            onClick={() => dispatch(setEditingCustomer(selectedCustomer))}
+            className='btn btn-link'
+          >
+            Edit
           </button>
 
           <button
