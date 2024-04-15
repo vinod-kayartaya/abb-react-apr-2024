@@ -1,0 +1,20 @@
+@base_url=http://54.206.118.54:8080
+
+
+###
+
+GET {{base_url}}/categories
+Accept: application/json
+
+###
+GET {{base_url}}/orders
+Accept: application/json
+Authorization: asdsad
+
+
+###
+POST {{base_url}}/login
+Accept: application/json
+Content-Type: application/json
+
+{"email":"ramesh@example.com", "password": "123123123"}
