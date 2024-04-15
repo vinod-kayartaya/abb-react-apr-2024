@@ -1,6 +1,7 @@
 import React from 'react';
+import withBorder from '../hoc/withBorder';
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <>
       <div className='text-center'>
@@ -12,3 +13,9 @@ const Footer = () => {
 };
 
 export default Footer;
+
+export const FooterWithBorder = withBorder(Footer, {
+  style: 'dashed',
+  color: 'blue',
+  width: '5px',
+});

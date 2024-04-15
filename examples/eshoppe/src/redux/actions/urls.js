@@ -1,5 +1,5 @@
-// export const BASE_URL = 'http://54.79.132.238:8080';
-export const BASE_URL = 'http://localhost:8080';
+export const BASE_URL = 'http://54.206.118.54:8080';
+// export const BASE_URL = 'http://localhost:8080';
 
 export const PRODUCTS_URL = `${BASE_URL}/products`;
 export const BRANDS_URL = `${BASE_URL}/brands`;

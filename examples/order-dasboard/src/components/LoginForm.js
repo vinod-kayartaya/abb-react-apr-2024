@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import withBorder from '../hoc/withBorder';
 
 const LoginForm = () => {
   const [user, setUser] = useState({ email: '', password: '' });
@@ -73,4 +74,5 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+// export default LoginForm;
+export default withBorder(LoginForm, { color: 'red', width: '3px' });

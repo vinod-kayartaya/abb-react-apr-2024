@@ -9,7 +9,7 @@ Accept: application/json
 ###
 GET {{base_url}}/orders
 Accept: application/json
-Authorization: asdsad
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IlJhbWVzaCBLdW1hciIsImlhdCI6MTcxMzE2Nzc4Mn0.TNKUyPAmPHO4SttkNOlUe7U4zZzTrgPKL72mokk0xXo
 
 
 ###

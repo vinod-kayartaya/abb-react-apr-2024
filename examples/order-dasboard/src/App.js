@@ -1,10 +1,18 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './layouts/Layout';
+import { lazy } from 'react';
+
 import CustomerLayout from './layouts/CustomerLayout';
 import AboutLayout from './layouts/AboutLayout';
-import LoginForm from './components/LoginForm';
-import Profile from './components/Profile';
-import OrderHistory from './components/OrderHistory';
+// import LoginForm from './components/LoginForm';
+// import Profile from './components/Profile';
+// import OrderHistory from './components/OrderHistory';
+
+// const CustomerLayout = lazy(() => import('./layouts/CustomerLayout.js'));
+// const AboutLayout = lazy(() => import('./layouts/AboutLayout.js'));
+const LoginForm = lazy(() => import('./components/LoginForm.js'));
+const Profile = lazy(() => import('./components/Profile.js'));
+const OrderHistory = lazy(() => import('./components/OrderHistory.js'));
 
 function App() {
   return (
