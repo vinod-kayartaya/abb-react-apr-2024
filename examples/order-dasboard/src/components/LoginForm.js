@@ -1,17 +1,42 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [user, setUser] = useState({ email: '', password: '' });
+  const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   const changeHandler = ({ target: { name, value } }) =>
     setUser({ ...user, [name]: value });
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    // make a POST request to '/login', get the token, store in session (or local) storage
+
+    try {
+      const { data } = await axios.post(
+        'http://54.206.118.54:8080/login',
+        user
+      );
+      localStorage.setItem('name', data.name);
+      localStorage.setItem('token', data.token);
+      setUser({ email: '', password: '' });
+      setError('');
+      // programatically navigate to '/customers/profile'
+      navigate('/customers/profile');
+    } catch (err) {
+      setError(err.response?.data);
+    }
+  };
+
   return (
     <>
-      {JSON.stringify(user)}
-      <form>
+      <form onSubmit={submitHandler}>
         <div className='mb-3'>
-          <label for='emailInput' className='form-label'>
+          <label htmlFor='emailInput' className='form-label'>
             Email address
           </label>
           <input
@@ -25,7 +50,7 @@ const LoginForm = () => {
           />
         </div>
         <div className='mb-3'>
-          <label for='passwordInput' className='form-label'>
+          <label htmlFor='passwordInput' className='form-label'>
             Password
           </label>
           <input
@@ -42,6 +67,8 @@ const LoginForm = () => {
           Submit
         </button>
       </form>
+
+      {error && <em className='text-danger'>{error}</em>}
     </>
   );
 };

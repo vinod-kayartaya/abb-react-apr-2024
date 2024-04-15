@@ -1,26 +1,45 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+
 const CustomerLayout = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
   return (
     <>
       <h3>Customer options</h3>
       <hr />
       <div>
-        <Link className='btn btn-link' to='./login'>
-          Login
-        </Link>
-        <Link className='btn btn-link' to='./register'>
-          Register
-        </Link>
-        <Link className='btn btn-link' to='./profile'>
-          View profile
-        </Link>
-        <Link className='btn btn-link' to='./order-history'>
-          Order history
-        </Link>
-        <Link className='btn btn-link' to='./logout'>
-          Logout
-        </Link>
+        {!token && (
+          <>
+            <Link className='btn btn-link' to='/customers/login'>
+              Login
+            </Link>
+            <Link className='btn btn-link' to='./register'>
+              Register
+            </Link>
+          </>
+        )}
+
+        {token && (
+          <>
+            <Link className='btn btn-link' to='./profile'>
+              View profile
+            </Link>
+            <Link className='btn btn-link' to='./order-history'>
+              Order history
+            </Link>
+            <button
+              className='btn btn-link'
+              onClick={() => {
+                localStorage.clear();
+                navigate('/customers/login');
+              }}
+            >
+              Logout
+            </button>
+          </>
+        )}
       </div>
 
       {/* for the child routes */}

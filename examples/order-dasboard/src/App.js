@@ -3,6 +3,8 @@ import Layout from './layouts/Layout';
 import CustomerLayout from './layouts/CustomerLayout';
 import AboutLayout from './layouts/AboutLayout';
 import LoginForm from './components/LoginForm';
+import Profile from './components/Profile';
+import OrderHistory from './components/OrderHistory';
 
 function App() {
   return (
@@ -13,12 +15,14 @@ function App() {
             {/* child routes for '/' */}
             <Route path='customers' element={<CustomerLayout />}>
               {/* child routes for '/customers' */}
-              <Route path='profile' element={<h3>customer profile here</h3>} />
+              <Route path='' element={<LoginForm />} />
               <Route path='login' element={<LoginForm />} />
               <Route
                 path='register'
                 element={<h3>new customer register her</h3>}
               />
+              <Route path='profile' element={<Profile />} />
+              <Route path='order-history' element={<OrderHistory />} />
             </Route>
 
             <Route path='about' element={<AboutLayout />}>
