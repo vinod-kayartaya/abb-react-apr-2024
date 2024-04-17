@@ -9,7 +9,7 @@ function App() {
   const title = 'React basics training';
   return (
     <>
-      <Header title={title} subtitle='a simple app by Vinod' author='Vinod' />
+      <Header title={title} subtitle='a simple app by Anurag' author='Anurag' />
       <div className='container'>
         {/* <NumberOps /> */}
         {/* <TasksApp /> */}

@@ -5,7 +5,7 @@ const Footer = () => {
     <>
       <div className='text-center'>
         &copy; all rights reserved by{' '}
-        <a href='https://vinod.co'>Learn with vinod</a>
+        <a href='https://www.anuraggupta.in'>Learn with Anurag</a>
       </div>
     </>
   );
