@@ -29,14 +29,17 @@ const CustomerCard = ({ customer }) => {
             <button
               onClick={() => dispatch(setSelectedCustomer(customer))}
               className='btn btn-link bi bi-search'
+              data-testid='search-button'
             ></button>
             <button
               onClick={deleteButtonHandler}
               className='btn btn-link bi bi-trash'
+              data-testid='delete-button'
             ></button>
             <button
               onClick={() => dispatch(setEditingCustomer(customer))}
               className='btn btn-link bi bi-pen'
+              data-testid='edit-button'
             ></button>
           </div>
         </div>

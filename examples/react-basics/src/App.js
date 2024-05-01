@@ -1,9 +1,9 @@
 import Footer from './components/Footer';
 import Header from './components/Header';
 import MovieList from './components/MovieList';
-import NumberOps from './components/NumberOps';
-import ProductList from './components/ProductList';
-import TasksApp from './components/tasks-manager/TasksApp';
+// import NumberOps from './components/NumberOps';
+// import ProductList from './components/ProductList';
+// import TasksApp from './components/tasks-manager/TasksApp';
 
 function App() {
   const title = 'React basics training';
